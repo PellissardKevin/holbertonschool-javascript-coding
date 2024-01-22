@@ -9,7 +9,7 @@ const path = process.argv[3];
 
 request(url, (error, response, body) => {
   if (error) {
-    console.error(`${error}`);
+    console.error('Error:', error);
     return;
   }
   fs.writeFile(path, body, 'utf-8', (err) => {

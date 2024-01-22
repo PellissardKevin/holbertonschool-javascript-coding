@@ -9,6 +9,6 @@ request(url, (error, response) => {
   if (err) {
     console.error(`Error: ${error.message}`);
   } else {
-    console.log(`code: ${response.statusCode}`);
+    console.log(`Code: ${response.statusCode}`);
   }
 });
