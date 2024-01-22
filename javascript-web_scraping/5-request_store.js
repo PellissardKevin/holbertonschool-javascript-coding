@@ -7,7 +7,7 @@ const url = process.argv[2];
 const path = process.argv[3];
 
 
-request(url, (error, response, body) => {
+request.get(url, (error, response, body) => {
   if (error) {
     console.error('Error:', error);
     return;

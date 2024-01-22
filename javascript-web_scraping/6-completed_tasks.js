@@ -9,7 +9,10 @@ const url = process.argv[2];
 
 request(url, (error, response, body) => {
   if (error) {
-    console.error('Error:', error);
+    console.error('Error:', error.message);
+  } else if (response.statusCode !== 200) {
+    console.error('code:', response.statusCode);
+    return;
   } else {
     const todosData = JSON.parse(body);
     const completedTasks = todosData.filter(task => task.completed);
