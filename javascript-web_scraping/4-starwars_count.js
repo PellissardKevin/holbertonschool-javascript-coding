@@ -5,16 +5,17 @@
 const request = require('request');
 
 
-const url = 'https://swapi-api.hbtn.io/api/people/18';
+const url = process.argv[2];
 
+request(url, (error, response, body) => {
+  if (error) {
+    console.error('Error:', error);
+  } else {
+    const movieData = JSON.parse(body).results;
+    const wedgeAntillesMovies = movieData.filter((film) =>
+      film.characters.includes('https://swapi-api.hbtn.io/api/people/18/')
+    );
 
-request(url, { json: true }, (error, response, body) => {
-    if (response && response.statusCode === 200) {
-      console.log(body.films.length);
-    } else if (error) {
-      console.error('Error:', error);
-    } else {
-        console.error('code:', response.statusCode);
-        return;
-      }
+    console.log(`${wedgeAntillesMovies.length}`);
+  }
 });
