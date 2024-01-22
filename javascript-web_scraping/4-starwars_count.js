@@ -8,9 +8,9 @@ const url = process.argv[2];
 request.get(url, (error, response, body) => {
   if (error) {
     console.error(`${error}`)
-  } else {
+  } else if (response && response.statusCode === 200) {
     const movieData = JSON.parse(body).results;
-    const wedgeAntillesMovies = filmsData.filter((film) =>
+    const wedgeAntillesMovies = movieData.filter((film) =>
       film.characters.includes('https://swapi-api.hbtn.io/api/people/18/')
     );
 
