@@ -7,16 +7,19 @@ const request = require('request');
 
 const url = process.argv[2];
 
-request(url, { json: true }, (error, response, body) => {
-    if (error) {
-        console.error('Error:', error);
-    } else if (response && response.statusCode === 200) {
-        let count = 0;
-        for (const task in body) {
-            if (body[task].completed === true) {
-                count += 1;
-            }
-        }
-        console.log(count);
-    }
+request(url, (error, response, body) => {
+  if (error) {
+    console.error('Error:', error);
+  } else {
+    const todosData = JSON.parse(body);
+    const completedTasks = todosData.filter(task => task.completed);
+
+    const completedTasksByUser = completedTasks.reduce((acc, task) => {
+      const userId = task.userId.toString();
+      acc[userId] = (acc[userId] || 0) + 1;
+      return acc;
+    }, {});
+
+    console.log(completedTasksByUser);
+  }
 });

@@ -8,10 +8,10 @@ const request = require('request');
 const url = 'https://swapi-api.hbtn.io/api/people/18';
 
 
-request(url, (error, response, body) => {
-  if (response && response.statusCode === 200) {
-    console.log(JSON.parse(body).films.length);
-  } else {
-    console.error(`${error}`)
-  }
+request(url, { json: true }, (error, response, body) => {
+    if (response && response.statusCode === 200) {
+      console.log(body.films.length);
+    } else {
+      console.error('Error:', error);
+    }
 });
