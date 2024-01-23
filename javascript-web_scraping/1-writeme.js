@@ -1,5 +1,5 @@
 #!/usr/bin/node
-//Write a script that writes a string to a file
+/* eslint-disable no-undef */
 
 const fs = require('fs');
 

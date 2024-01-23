@@ -1,5 +1,5 @@
 #!/usr/bin/node
-//prints the number of movies where the character “Wedge Antilles” is present
+/* eslint-disable no-undef */
 
 const request = require('request');
 

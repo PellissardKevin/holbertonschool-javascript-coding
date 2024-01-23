@@ -1,7 +1,5 @@
 #!/usr/bin/node
-//computes the number of tasks completed by user id
-
-
+/* eslint-disable no-undef */
 
 const request = require('request');
 

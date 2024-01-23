@@ -1,5 +1,5 @@
 #!/usr/bin/node
-//Write a script that display the status code of a GET request.
+/* eslint-disable no-undef */
 
 const request = require('request');
 

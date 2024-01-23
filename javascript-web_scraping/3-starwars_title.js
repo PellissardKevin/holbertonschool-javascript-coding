@@ -1,5 +1,5 @@
 #!/usr/bin/node
-//prints the title of a Star Wars movie where the episode number matches
+/* eslint-disable no-undef */
 
 
 const request = require('request');
