@@ -3,15 +3,11 @@
 
 
 const request = require('request');
-
-const id = process.argv[2];
-const url = `https://swapi-api.hbtn.io/api/films/${id}/`;
+const url = `https://swapi-api.hbtn.io/api/films/${process.argv[2]}/`;
 
 request.get(url, (error, response, body) => {
   if (error) {
-    console.error('Error:', error)
-  } else if (response.statusCode !== 200) {
-    console.error('Unexpected status code:', response.statusCode);
+    console.error(`${error}`);
   } else {
     console.log(`${JSON.parse(body).title}`);
   }
