@@ -7,21 +7,17 @@ const url = process.argv[2];
 
 request(url, (error, response, body) => {
   if (error) {
-    console.error(`Error : ${error}`);
+    console.error('Error:', error.message);
   } else {
     const todosData = JSON.parse(body);
-    const completedTasksByUser = {};
-    todosData.forEach((todo) => {
-      if (todo.completed) {
-        if (completedTasksByUser[todo.userId]) {
-          completedTasksByUser[todo.userId]++;
-        } else {
-          completedTasksByUser[todo.userId] = 1;
-        }
-      }
-    });
+    const completedTasks = todosData.filter(task => task.completed);
+
+    const completedTasksByUser = completedTasks.reduce((acc, task) => {
+      const userId = task.userId.toString();
+      acc[userId] = (acc[userId] || 0) + 1;
+      return acc;
+    }, {});
 
     console.log(completedTasksByUser);
   }
 });
-
