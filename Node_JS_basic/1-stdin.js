@@ -15,3 +15,8 @@ inputRead.on('line', (name) => {
 });
 
 module.exports = inputRead;
+
+
+if (require.main === module) {
+  inputRead();
+}
