@@ -1,8 +1,17 @@
 /* eslint-disable no-undef */
-// Enter any texts ( User input)
-process.stdout.write('Welcome to Holberton School, what is your name? \n')
-process.stdin.on('data', data => {
-  process.stdout.write(`Your name is: ${data.toString()}`);
-  process.stdout.write('This important software is now closing\n')
-  process.exit();
+console.log('Welcome to Holberton School, what is your name?');
+
+const readline = require('readline');
+
+const inputRead = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
 });
+
+inputRead.on('line', (name) => {
+  console.log(`Your name is: ${name}`);
+  console.log('This important software is now closing');
+  inputRead.close();
+});
+
+module.exports = inputRead;
