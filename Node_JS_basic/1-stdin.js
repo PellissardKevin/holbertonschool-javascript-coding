@@ -10,12 +10,15 @@ const inputRead = readline.createInterface({
 
 inputRead.on('line', (name) => {
   console.log(`Your name is: ${name}`);
-  console.log('This important software is now closing');
-  inputRead.close();
+  process.stdin.on("keypress", function (chunk, key) {
+    process.stdin.setRawMode(true);
+    if (key && key.name === "c" && key.ctrl) {
+      console.log('This important software is now closing');
+      inputRead.close();
+    }
+  });
+
 });
 
 module.exports = inputRead;
 
-if (require.main === module) {
-  inputRead();
-}
