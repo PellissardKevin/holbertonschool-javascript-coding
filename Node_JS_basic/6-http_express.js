@@ -6,13 +6,11 @@ const port = 1245;
 module.exports = app;
 
 if (require.main === module) {
-  app.get('/', (req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.send('Hello Holberton School!');
+  app.get('/', (request, response) => {
+    response.send('Hello Holberton School!');
   });
 
   app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Server is running : http://localhost:${port}/`);
   });
 }
