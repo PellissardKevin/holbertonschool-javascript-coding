@@ -1,21 +1,21 @@
 /* eslint-disable no-undef */
-const readline = require("readline")
+console.log('Welcome to Holberton School, what is your name?');
 
-const rl = readline.createInterface({
+const readline = require('readline');
+
+const inputRead = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
-})
+});
 
-function ask() {
-  rl.question('Welcome to Holberton School, what is your name?\n', (answer) => {
-    rl.write(`Your name is: ${answer}\n`)
-    console.log('This important software is now closing');
-    process.exit();
-  });
-}
+inputRead.on('line', (name) => {
+  console.log(`Your name is: ${name}`);
+  console.log('This important software is now closing');
+  inputRead.close();
+});
 
-module.exports = ask;
+module.exports = inputRead;
 
 if (require.main === module) {
-  ask();
+  inputRead();
 }
