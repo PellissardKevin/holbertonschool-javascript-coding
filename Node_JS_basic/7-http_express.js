@@ -11,10 +11,7 @@ app.get('/students', (req, res) => {
   const m1 = 'This is the list of our students';
   countStudents(db)
     .then((result) => {
-      const m2 = result.sentence1;
-      const m3 = result.sentence2;
-      const m4 = result.sentence3;
-      const mess = `${m1}\n${m2}\n${m3}\n${m4}`;
+      const mess = `${m1}\n${result.totalNumber}\n${result.CS}\n${result.SWE}`;
       res.type('text/plain').send(mess);
     })
     .catch((error) => {
