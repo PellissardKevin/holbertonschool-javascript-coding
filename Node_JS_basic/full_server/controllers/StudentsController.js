@@ -4,19 +4,11 @@ class StudentsController {
   static getAllStudents(request, response) {
     readDatabase(process.argv[2] || './database.csv')
       .then((studentsData) => {
-        const csList = studentsData.CS.join(', ');
-        const sweList = studentsData.SWE.join(', ');
-
-        const responseText = 'This is the list of our students\n'
-        + `Number of students in CS: ${studentsData.CS.length}. List: ${csList}\n`
-        + `Number of students in SWE: ${studentsData.SWE.length}. List: ${sweList}`;
-
-        response.status(200).send(responseText);
+        response.status(200).send('This is the list of our students\n'
+        + `Number of students in CS: ${studentsData.CS.length}. List: ${studentsData.CS.join(', ')}\n`
+        + `Number of students in SWE: ${studentsData.SWE.length}. List: ${studentsData.SWE.join(', ')}`);
       })
-      .catch((error) => {
-        console.error('Error processing students data:', error);
-        response.status(500).send('Cannot load the database');
-      });
+      .catch((error) => { response.status(500).send('Cannot load the database'); });
   }
 
   static getAllStudentsByMajor(request, response) {
@@ -29,15 +21,9 @@ class StudentsController {
 
     readDatabase(process.argv[2] || './database.csv')
       .then((studentsData) => {
-        const majorStudents = studentsData[major] || [];
-        const responseText = `List: ${majorStudents.join(', ')}`;
-
-        response.status(200).send(responseText);
+        response.status(200).send(`List: ${studentsData[major].join(', ')}`);
       })
-      .catch((error) => {
-        console.error('Error processing students data:', error);
-        response.status(500).send('Cannot load the database');
-      });
+      .catch((error) => { response.status(500).send(error.message); });
   }
 }
 
